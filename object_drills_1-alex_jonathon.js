@@ -7,6 +7,7 @@ function createMyObject() {
       console.log('hello');
     } 
   }
+
   return obj;
 }
 
