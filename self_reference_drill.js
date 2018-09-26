@@ -1,3 +1,5 @@
+'use strict';
+
 function personMaker() {
   var person = {
     firstName: 'Paul',
