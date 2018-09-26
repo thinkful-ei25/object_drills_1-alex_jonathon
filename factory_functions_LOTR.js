@@ -1,6 +1,6 @@
 'use strict';
 
-function createCharacter(name, nickName, race, origin, attack, defense) {
+function createCharacter(name, nickName, race, origin, attack, defense, weapon) {
   return {
     name: name,
     nickName: nickName,
@@ -8,8 +8,9 @@ function createCharacter(name, nickName, race, origin, attack, defense) {
     origin: origin,
     attack: attack,
     defense: defense,
+    weapon: weapon,
     describe: function() {
-      console.log(this.name + ' is a ' + this.race + ' from '+ this.origin + '.');
+      console.log(this.name + ' is a ' + this.race + ' from '+ this.origin + ' who uses ' + this.weapon + '.');
     },
     evaluateFight: function(character) {
       let attack = 0;
@@ -18,23 +19,31 @@ function createCharacter(name, nickName, race, origin, attack, defense) {
       } 
       console.log('Your opponent takes ' + this.attack + ' damage and you recieve '+ character.attack + ' damage.');
     }
-  }
+  };
 }
 
-let characters = [
-  ['Gandalf the White', 'gandalf' , 'Wizard' , 'Middle Earth' , 10 , 6], 
-  ['Bilbo Baggins', 'bilbo', 'Hobbit', 'The Shire', 2, 1], 
-  ['Frodo Baggins', 'frodo', 'Hobbit', 'The Shire', 3, 2], 
-  ['Aragorn son of Arathorn', 'aragorn', 'Man', 'Dunnedain', 6, 8], 
-  ['Legolas', 'legolas', 'Elf', 'Woodland Realm', 8, 5]
+let statArr = [
+  createCharacter('Gandalf the White', 'gandalf' , 'Wizard' , 'Middle Earth' , 10 , 6, 'a wizard staff'),
+  createCharacter('Bilbo Baggins', 'bilbo', 'Hobbit', 'The Shire', 2, 1, 'the ring'),
+  createCharacter('Frodo Baggins', 'frodo', 'Hobbit', 'The Shire', 3, 2, 'string and Barrow Blade'), 
+  createCharacter('Aragorn son of Arathorn', 'aragorn', 'Man', 'Dunnedain', 6, 8, 'Anduril'), 
+  createCharacter('Legolas', 'legolas', 'Elf', 'Woodland Realm', 8, 5, 'Bow and Arrow')
 ];
+statArr.push(createCharacter('Arwen Undomiel', 'arwen', 'Half-elf', 'Rivendell', 42, 42, 'Banhammer'));
 
-let statArr= [];
+statArr.find(function(element){
+  if(element.nickName === 'aragorn'){
+    //console.log(element.describe());
+    return element;
+  }
+}).describe();
 
-for (let i = 0; i < characters.length; i++) {
-  statArr.push(createCharacter(characters[i][0], characters[i][1], characters[i][2], characters[i][3], characters[i][4], characters[i][5]));
-}
+let hobbitArray = statArr.filter(function(element){
+  return element.race === 'Hobbit';
+});
 
-console.log(statArr);
+let overpoweredArray = statArr.filter(function(element){
+  return element.attack > 5;
+});
 
 
