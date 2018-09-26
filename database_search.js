@@ -11,18 +11,17 @@ const HEROES = [
 ];
 
 function findOne(arr, query) {
-  let queryId = Object.keys(query);
+  let queryKey = Object.keys(query);
   let queryVal = Object.values(query);
 
   arr.forEach(function(element) {
-    for (let key in element) {
-      for (let i =0; i< queryId.length; i++) {
-        if (key === queryId[i]) {
-          console.log(queryId[i]);
-        }
+    for (let i = 0; i< queryKey.length; i++) {
+      console.log(queryVal[i]);
+      if (queryVal[i] === element.id) {
+        console.log(element);  
       } 
     }
   });
 }
 
-findOne(HEROES, { id: 1});
+findOne(HEROES, { name: 'Captain America' });
